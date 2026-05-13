@@ -23,4 +23,4 @@ def longest_substring(string: str):
 print(longest_substring("abcabcbb"))  # → 3
 print(longest_substring("bbbbb"))     # → 1
 print(longest_substring("pwwkew"))    # → 3
-print(longest_substring("avinash"))   # → 7
+print(longest_substring("avinash"))   # → 6
