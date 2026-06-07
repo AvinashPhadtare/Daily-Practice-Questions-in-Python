@@ -21,6 +21,10 @@ class Gym_Membership:
         status = "Active" if self.is_active else "Inactive"
         return f"{self.name} | Age: {self.age} | Plan: {self.plan} | Status: {status}"
 
+
+# Example usage:-
+
+
 # Create two members
 m1 = Gym_Membership("Avinash", 22, "basic")
 m2 = Gym_Membership("Riya", 25, "premium")

@@ -38,18 +38,26 @@ class TrainerMember(Gym_Membership):
         base_info = super().__str__()
         return f"{base_info} | Specialization: {self.Specialization} | Hourly Rate: {self.hourly_rate}"
 
+
+
+
+# Example usage:-
+
 # Create two members
 m1 = Gym_Membership("Avinash", 22, "basic")
 m2 = Gym_Membership("Riya", 25, "premium")
+
 
 # Demonstrate functionality
 m1.activate()
 m2.deactivate()
 m1.upgrade_plan("vip")
 
+
 # Print results
 print(m1)
 print(m2)
+
 
 # Create trainer
 trainer = TrainerMember(
@@ -60,7 +68,9 @@ trainer = TrainerMember(
     50.0
 )
 
+
 trainer.activate()
 
+# Print results
 print(trainer)
 print("Earnings:", trainer.calculate_earnings(10))

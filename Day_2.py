@@ -19,7 +19,7 @@ def longest_substring(string: str):
 
     return max_len
 
-
+# Example usage:-
 print(longest_substring("abcabcbb"))  # → 3
 print(longest_substring("bbbbb"))     # → 1
 print(longest_substring("pwwkew"))    # → 3

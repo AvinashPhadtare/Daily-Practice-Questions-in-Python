@@ -49,7 +49,8 @@ class AttendanceTracker:
         }
     
 
-# Example usage
+# Example usage:-
+
 tracker = AttendanceTracker()
 
 tracker.current_date = '2024-06-01'

@@ -15,6 +15,6 @@ def is_valid_username(username: str):
     return True
 
 
-
+# Example usage:-
 string = input("Enter a username: ")
 print(is_valid_username(string))
