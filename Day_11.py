@@ -1,19 +1,24 @@
 def password_strength(password: str):
-    l = len(password)
-    new_password = password.strip()
+    has_letter = False
+    has_digit = False
+    has_special = False
 
-    if l > 8 or (new_password.isalpha or new_password.isdigit) and "!@#$%^&*" in new_password:
+    for ch in password:
+        if ch.isalpha():
+            has_letter = True
+        elif ch.isdigit():
+            has_digit = True
+        elif ch in "!@#$%^&*":
+            has_special = True
+
+    if len(password) >= 8 and has_letter and has_digit and has_special:
         return "strong"
-    
-    if l > 6 or (new_password.isalpha() and new_password.isdigit()):
+    elif len(password) >= 6 and has_letter and has_digit:
         return "medium"
-    
-    if l < 6 or new_password.isalpha():
+    else:
         return "weak"
-    
-    
 
-# Example usage :- 
-print(password_strength("abc"))     # output ->  weak
-print(password_strength("avinash1"))    # ouput -> medium 
-print(password_strength("Avinash@1"))   # output -> strong 
+
+print(password_strength("Avinash@!1"))  # Output: strong
+print(password_strength("avinash123"))        # Output: medium  
+print(password_strength("abc"))          # Output: weak
