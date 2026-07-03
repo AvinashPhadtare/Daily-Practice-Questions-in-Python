@@ -1,3 +1,6 @@
+from itertools import count
+
+
 def build_lps(pattern):
     lps = [0] * len(pattern)
 
@@ -45,3 +48,10 @@ def count_pattern_occurrences(text, pattern):
                 i += 1
 
     return count
+
+
+# Example usage:
+
+count_pattern_occurrences("aabaabaabaab", "aad") # -> 4
+count_pattern_occurrences("abcdef", "gh")        # -> 0
+count_pattern_occurrences("aaaa", "aa")          # -> 3 (overlapping counts)
