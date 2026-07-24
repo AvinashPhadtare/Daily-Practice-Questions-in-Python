@@ -6,6 +6,15 @@ class PaymentRecord:
         self.status = status
         self.payment_method = payment_method
 
+    def mark_paid(self):
+        self.status = "paid"
+
+    def mark_failed(self):
+        self.status = "failed"
+
+    def is_overdue(self, today):
+        return self.status == "pending" and self.date < today
+
     @classmethod
     def from_dict(cls, data):
         return cls(
@@ -29,14 +38,19 @@ class PaymentRecord:
         )
 
     def __repr__(self):
-        return (f"PaymentRecord(member_id={self.member_id}, "
-                f"amount={self.amount}, "
-                f"date='{self.date}', "
-                f"status='{self.status}', "
-                f"payment_method='{self.payment_method}')")
+        return (
+            f"PaymentRecord(member_id={self.member_id}, "
+            f"amount={self.amount}, "
+            f"date='{self.date}', "
+            f"status='{self.status}', "
+            f"payment_method='{self.payment_method}')"
+        )
 
 
+# ------------------------------
 # Create object from dictionary
+# ------------------------------
+
 data = {
     "member_id": 1,
     "amount": 500.0,
@@ -47,10 +61,21 @@ data = {
 
 payment1 = PaymentRecord.from_dict(data)
 
-# Create object from CSV
+# ------------------------------
+# Create object from CSV string
+# ------------------------------
+
 payment2 = PaymentRecord.from_csv_row(
     "2,750.0,2025-02-10,pending,cash"
 )
 
+# ------------------------------
+# Using previous methods
+# ------------------------------
+
+payment2.mark_paid()
+
 print(payment1)
 print(payment2)
+
+print(payment2.is_overdue("2025-03-01"))
