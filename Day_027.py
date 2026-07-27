@@ -26,6 +26,7 @@ class Member(LogMixin, ValidatorMixin):
             return False
 
 
+# Example usage
 # Example 1
 member1 = Member("Avinash", "avi@gmail.com", "9876543210")
 print(member1.register())

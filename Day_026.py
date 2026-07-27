@@ -31,3 +31,17 @@ class PlanUtils:
     def discount_price(plan: str, percent: float) -> float:
         price = PlanUtils.plan_price(plan)
         return price - (price * percent / 100)
+
+# Example usage
+
+print(PlanUtils.is_valid_plan("basic"))
+print(PlanUtils.is_valid_plan("gold"))
+
+print(PlanUtils.plan_price("basic"))
+print(PlanUtils.plan_price("vip"))
+
+print(PlanUtils.upgrade_path("basic"))
+print(PlanUtils.upgrade_path("vip"))
+
+print(PlanUtils.discount_price("vip", 10))
+print(PlanUtils.discount_price("premium", 25))
