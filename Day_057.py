@@ -40,15 +40,9 @@
 # ============================================================
 
 
-# ------------------------------------------------------------
-# Function: Split string into chunks of k and deduplicate
-# ------------------------------------------------------------
-def merge_the_tools(string: str, k: int) -> None:
-    # Calculate the total length of the string
+# Solution:
+def merge_the_tools(string: str, k: int):
     n = len(string)
-
-    # Loop through the string with a step size of k
-    # to slice s into n / k substrings of length k
     for i in range(0, n, k):
 
         # Extract the contiguous substring t_i of length k
@@ -74,9 +68,7 @@ def merge_the_tools(string: str, k: int) -> None:
         print("".join(u_i))
 
 
-# ------------------------------------------------------------
 # Example usage
-# ------------------------------------------------------------
 if __name__ == "__main__":
 
     # Sample input values
