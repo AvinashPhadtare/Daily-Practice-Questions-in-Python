@@ -1,0 +1,49 @@
+name: Daily Question Publish
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "30 13 * * *"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout private queue repo
+        uses: actions/checkout@v4
+        with:
+          repository: AvinashPhadtare/daily-practice-queue
+          token: ${{ secrets.QUEUE_REPO_TOKEN }}
+          path: queue_repo
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run publisher
+        run: python auto_upload.py
+
+      - name: Remove used file from private queue
+        run: |
+          cd queue_repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Remove published question"
+          git push https://x-access-token:${{ secrets.QUEUE_REPO_TOKEN }}@github.com/AvinashPhadtare/daily-practice-queue.git
+
+      - name: Commit and push public repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Day_*.py
+          git diff --staged --quiet || git commit -m "Auto-publish: next daily question"
+          git push
