@@ -1,4 +1,5 @@
 name: Daily Question Publish
+# schedule re-activated
 
 permissions:
   contents: write
@@ -40,10 +41,16 @@ jobs:
           git diff --staged --quiet || git commit -m "Remove published question"
           git push https://x-access-token:${{ secrets.QUEUE_REPO_TOKEN }}@github.com/AvinashPhadtare/daily-practice-queue.git
 
+      - name: Get published day number
+        id: getday
+        run: |
+          NUM=$(ls Day_*.py | sed -E 's/Day_0*([0-9]+)\.py/\1/' | sort -n | tail -1)
+          echo "num=$NUM" >> "$GITHUB_OUTPUT"
+
       - name: Commit and push public repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add Day_*.py
-          git diff --staged --quiet || git commit -m "Daily Practice Question"
+          git diff --staged --quiet || git commit -m "Day ${{ steps.getday.outputs.num }} of Practicing"
           git push
