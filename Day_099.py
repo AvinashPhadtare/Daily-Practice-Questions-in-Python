@@ -1,4 +1,3 @@
-
 # ========================= Question =========================
 #
 # You are given two integer NumPy arrays A and B of the same
