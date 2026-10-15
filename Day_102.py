@@ -1,4 +1,3 @@
-# Day 24
 # ========================= Question =========================
 #
 # You are given a polynomial P of a single variable x.
