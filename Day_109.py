@@ -47,6 +47,7 @@
 #
 # ============================================================
 
+
 # ======================= Solution ===========================
 n = int(input())
 english = set(map(int, input().split()))
@@ -54,6 +55,6 @@ english = set(map(int, input().split()))
 m = int(input())
 french = set(map(int, input().split()))
 
-result = english.difference(french)
+result = english.difference(french) # .difference() operation to find the students who are in the English set but not in the French set. 
 
 print(len(result))
